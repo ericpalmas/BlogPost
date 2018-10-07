@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(value="/blogpost")
-@SuppressWarnings("serial")
+
 public class HelloServlet extends HttpServlet {
 	ArrayList<BlogPost> blogPosts = new ArrayList<>();
 	ObjectMapper mapper = new ObjectMapper();
