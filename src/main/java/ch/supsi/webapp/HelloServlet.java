@@ -26,3 +26,5 @@ public class HelloServlet extends HttpServlet {
 		res.getWriter().println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(blogPost));
 	}
 }
+
+
