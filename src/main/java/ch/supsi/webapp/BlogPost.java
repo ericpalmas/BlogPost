@@ -5,6 +5,8 @@ public class BlogPost {
     private String text;
     private String author;
 
+    private String id;
+
     public String getTitle() {
         return title;
     }
@@ -28,6 +30,8 @@ public class BlogPost {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+
 
     public BlogPost(String title, String text, String author) {
         this.title = title;

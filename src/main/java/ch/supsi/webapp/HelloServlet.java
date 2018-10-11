@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(value = "/blogpost")
+@WebServlet(value = "/blogpost/*")
 @SuppressWarnings("serial")
 
 public class HelloServlet extends HttpServlet {
@@ -21,7 +21,23 @@ public class HelloServlet extends HttpServlet {
 		res.setStatus(200);
 		res.setContentType("application/json");
 		PrintWriter writer = res.getWriter();
-		res.getWriter().println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(blogPosts));
+
+		String url = req.getRequestURL().toString();
+
+//		String n1 = req.getAuthType();
+//		String n2 = req.getContextPath();
+//		String n3 = req.getMethod();
+		String requestedBlogPost = req.getPathInfo();
+//		String n5 = req.getRequestURI();
+//		String n6 = req.getRequestedSessionId();
+
+
+		if(req.getServletPath().equals("/blogpost")) {
+			res.getWriter().println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(blogPosts));
+
+		}else if(req.getServletPath().equals("/blogpost/"+requestedBlogPost.charAt(1))){
+			res.getWriter().println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(blogPosts.get((int)requestedBlogPost.charAt(1))));
+		}
 		writer.flush();
 		writer.close();
 	}
