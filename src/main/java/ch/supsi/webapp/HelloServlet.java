@@ -30,12 +30,10 @@ public class HelloServlet extends HttpServlet {
 		res.setContentType("application/json");
 		PrintWriter writer = res.getWriter();
 		res.setStatus(200);
-		if (req.getContentType().contains("application/x-www-form-urlencoded")) {
-			if (!req.getParameterMap().isEmpty()) {
+		if (req.getParameterMap().size()!=0){
 				BlogPost requestPostBlog = new BlogPost(req.getParameter("title"), req.getParameter("text"), req.getParameter("author"));
 				blogPosts.add(requestPostBlog);
 				writer.println(mapper.writeValueAsString(requestPostBlog));
-			}
 		} else {
 			BlogPost blogPost = mapper.readValue(req.getInputStream(), BlogPost.class);
 			blogPosts.add(blogPost);
