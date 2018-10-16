@@ -4,7 +4,7 @@ public class BlogPost {
     private String title;
     private String text;
     private String author;
-    //private Integer id;
+
 
 
     public String getTitle() {

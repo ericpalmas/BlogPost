@@ -1,6 +1,8 @@
 package ch.supsi.webapp;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -105,21 +107,37 @@ public class HelloServlet extends HttpServlet {
         if(req.getMethod().equals("PATCH")){
             if (req.getPathInfo() != null) {
                 Integer index = Integer.parseInt(req.getPathInfo().substring(1));
-                try {
-                    if (!req.getParameterMap().isEmpty()) {
-                        if (req.getParameter("title") != null)
-                            blogPosts.get(index).setTitle(req.getParameter("title"));
-                        if (req.getParameter("text") != null)
-                            blogPosts.get(index).setText(req.getParameter("text"));
-                        if (req.getParameter("author") != null)
-                            blogPosts.get(index).setAuthor(req.getParameter("author"));
-                        writer.println(mapper.writeValueAsString(blogPosts.get(index)));
-                        res.setStatus(200);
+                if (req.getParameterMap().size()!=0){
+                    try {
+                        if (!req.getParameterMap().isEmpty()) {
+                            if (req.getParameter("title") != null)
+                                blogPosts.get(index).setTitle(req.getParameter("title"));
+                            if (req.getParameter("text") != null)
+                                blogPosts.get(index).setText(req.getParameter("text"));
+                            if (req.getParameter("author") != null)
+                                blogPosts.get(index).setAuthor(req.getParameter("author"));
+                            writer.println(mapper.writeValueAsString(blogPosts.get(index)));
+                            res.setStatus(200);
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        writer.println("nessun blogpost trovato");
+                        res.setStatus(404);
+                        return;
                     }
-                } catch (IndexOutOfBoundsException e) {
-                    writer.println("nessun blogpost trovato");
-                    res.setStatus(404);
-                    return;
+                } else {
+                    String body = getBody(req);
+                    String[] paramethers = body.split("&");
+                    for(int i=0;i<paramethers.length;++i){
+                        if(paramethers[i].substring(0,5).equals("text=")){
+                            blogPosts.get(index).setText(paramethers[i].substring(5));
+                        }else if(paramethers[i].substring(0,6).equals("title=")){
+                            blogPosts.get(index).setTitle(paramethers[i].substring(6));
+                        }else if(paramethers[i].substring(0,7).equals("author=")){
+                            blogPosts.get(index).setAuthor(paramethers[i].substring(7));
+                        }
+                    }
+                    res.setStatus(200);
+                    writer.println(mapper.writeValueAsString(body));
                 }
             }
             writer.flush();
@@ -128,4 +146,29 @@ public class HelloServlet extends HttpServlet {
             super.service(req,res);
         }
     }
+
+    private String getBody(HttpServletRequest req){
+        StringBuffer sb = new StringBuffer();
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = req.getReader();
+            char[] charBuffer = new char[128];
+            int bytesRead;
+            while ((bytesRead = bufferedReader.read(charBuffer)) != -1) {
+                sb.append(charBuffer, 0, bytesRead);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            return sb.toString();
+        }
+    }
+
 }
