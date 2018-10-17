@@ -71,13 +71,22 @@ public class HelloServlet extends HttpServlet {
                     blogPosts.set(index, blogPost);
                     writer.println(mapper.writeValueAsString(blogPost));
                     res.setStatus(200);
+                }else {
+                    BlogPost blogPost = mapper.readValue(req.getInputStream(), BlogPost.class);
+                    blogPosts.set(index,blogPost);
+                    writer.println(mapper.writeValueAsString(blogPost));
+                    res.setStatus(200);
                 }
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException | NumberFormatException e) {
                 writer.println("nessun blogpost trovato");
                 res.setStatus(404);
-                return;
             }
+        }else{
+            writer.println("Specificare il blog post da modificare");
+            res.setStatus(404);
         }
+        writer.flush();
+        writer.close();
     }
 
 
@@ -91,11 +100,13 @@ public class HelloServlet extends HttpServlet {
                 writer.println(mapper.writeValueAsString(blogPosts.get(index)));
                 blogPosts.remove((int)index);
                 res.setStatus(200);
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException  | NumberFormatException e) {
                 writer.println("nessun blogpost trovato");
                 res.setStatus(404);
-                return;
             }
+        }else{
+            writer.println("Specificare il blog post da modificare");
+            res.setStatus(404);
         }
         writer.flush();
         writer.close();
@@ -119,7 +130,7 @@ public class HelloServlet extends HttpServlet {
                             writer.println(mapper.writeValueAsString(blogPosts.get(index)));
                             res.setStatus(200);
                         }
-                    } catch (IndexOutOfBoundsException e) {
+                    } catch (IndexOutOfBoundsException | NumberFormatException e) {
                         writer.println("nessun blogpost trovato");
                         res.setStatus(404);
                         return;
@@ -139,6 +150,9 @@ public class HelloServlet extends HttpServlet {
                     res.setStatus(200);
                     writer.println(mapper.writeValueAsString(body));
                 }
+            }else{
+                writer.println("Specificare il blog post da modificare");
+                res.setStatus(404);
             }
             writer.flush();
             writer.close();
