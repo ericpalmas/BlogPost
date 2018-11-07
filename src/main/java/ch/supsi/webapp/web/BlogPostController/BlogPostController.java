@@ -15,18 +15,18 @@ public class BlogPostController {
     ObjectMapper mapper = new ObjectMapper();
 
 
-    @RequestMapping(value="/blogpost", method= RequestMethod.GET)
+    @RequestMapping(value="/blogposts", method = RequestMethod.GET)
     public List<BlogPost> get() {
         return blogPosts;
     }
 
-    @RequestMapping(value="/blogpost", method = RequestMethod.POST)
+    @RequestMapping(value="/blogposts", method = RequestMethod.POST)
     public ResponseEntity<BlogPost> post(@RequestBody BlogPost blogpost){
         blogPosts.add(blogpost);
         return new ResponseEntity<BlogPost>(blogpost, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/blogpost/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/blogposts/{id}", method = RequestMethod.GET)
     public ResponseEntity<BlogPost> getBlogPost(@PathVariable int id) {
         try{
             for(BlogPost blogPost : blogPosts){
@@ -40,7 +40,7 @@ public class BlogPostController {
         return new ResponseEntity<BlogPost>(HttpStatus.NOT_FOUND);
     }
 
-    @RequestMapping(value="/blogpost/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="/blogposts/{id}", method = RequestMethod.PUT)
     public ResponseEntity<BlogPost> put(@PathVariable int id,@RequestBody BlogPost blogPost){
         try{
             for(BlogPost b : blogPosts){
@@ -55,7 +55,7 @@ public class BlogPostController {
         return new ResponseEntity<BlogPost>(HttpStatus.NOT_FOUND);
     }
 
-    @RequestMapping(value="/blogpost/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/blogposts/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<JSONObject> delete(@PathVariable int id){
         try{
             for(BlogPost b : blogPosts){
@@ -72,7 +72,7 @@ public class BlogPostController {
         return new ResponseEntity<JSONObject>(HttpStatus.NOT_FOUND);
     }
 
-    @RequestMapping(value = "/blogpost/{id}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/blogposts/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<BlogPost> patch(@PathVariable int id, @RequestBody BlogPost blogPost) {
         try {
             for (BlogPost b : blogPosts) {
