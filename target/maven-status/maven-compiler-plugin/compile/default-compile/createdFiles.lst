@@ -1,2 +1,4 @@
-ch\supsi\webapp\BlogPost.class
-ch\supsi\webapp\HelloServlet.class
+ch\supsi\webapp\web\BlogPostController\BlogPostController.class
+ch\supsi\webapp\web\ServletInitializer.class
+ch\supsi\webapp\web\WebApplication.class
+ch\supsi\webapp\web\BlogPost\BlogPost.class

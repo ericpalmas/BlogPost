@@ -1,2 +1,4 @@
-C:\Users\Eric\palmas\src\main\java\ch\supsi\webapp\BlogPost.java
-C:\Users\Eric\palmas\src\main\java\ch\supsi\webapp\HelloServlet.java
+C:\Users\Eric\palmas\src\main\java\ch\supsi\webapp\web\WebApplication.java
+C:\Users\Eric\palmas\src\main\java\ch\supsi\webapp\web\BlogPostController\BlogPostController.java
+C:\Users\Eric\palmas\src\main\java\ch\supsi\webapp\web\BlogPost\BlogPost.java
+C:\Users\Eric\palmas\src\main\java\ch\supsi\webapp\web\ServletInitializer.java

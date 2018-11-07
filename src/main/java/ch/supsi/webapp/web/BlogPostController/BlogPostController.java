@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 public class BlogPostController {
     private List<BlogPost> blogPosts = new ArrayList<>();
-    ObjectMapper mapper = new ObjectMapper();
 
 
     @RequestMapping(value="/blogposts", method = RequestMethod.GET)
@@ -43,9 +42,9 @@ public class BlogPostController {
     @RequestMapping(value="/blogposts/{id}", method = RequestMethod.PUT)
     public ResponseEntity<BlogPost> put(@PathVariable int id,@RequestBody BlogPost blogPost){
         try{
-            for(BlogPost b : blogPosts){
-                if(b.getId()==id){
-                    blogPosts.set(id,blogPost);
+            for(int i=0;i<blogPosts.size();++i){
+                if(blogPosts.get(i).getId()==id){
+                    blogPosts.set(i,blogPost);
                     return new ResponseEntity<BlogPost>(blogPost, HttpStatus.OK);
                 }
             }
@@ -62,7 +61,7 @@ public class BlogPostController {
                 if(b.getId()==id){
                     JSONObject object = new JSONObject();
                     object.put("success", true);
-                    blogPosts.remove(id);
+                    blogPosts.remove(b);
                     return new ResponseEntity<JSONObject>(object, HttpStatus.OK);
                 }
             }
@@ -75,14 +74,14 @@ public class BlogPostController {
     @RequestMapping(value = "/blogposts/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<BlogPost> patch(@PathVariable int id, @RequestBody BlogPost blogPost) {
         try {
-            for (BlogPost b : blogPosts) {
-                if (b.getId() == id) {
+            for (int i=0;i<blogPosts.size();i++) {
+                if (blogPosts.get(i).getId() == id) {
                     if (blogPost.getTitle() != null)
-                        blogPosts.get(id).setTitle(blogPost.getTitle());
+                        blogPosts.get(i).setTitle(blogPost.getTitle());
                     if (blogPost.getText() != null)
-                        blogPosts.get(id).setText(blogPost.getText());
+                        blogPosts.get(i).setText(blogPost.getText());
                     if (blogPost.getAuthor() != null)
-                        blogPosts.get(id).setAuthor(blogPost.getAuthor());
+                        blogPosts.get(i).setAuthor(blogPost.getAuthor());
                     return new ResponseEntity<BlogPost>(blogPost, HttpStatus.OK);
                 }
             }
