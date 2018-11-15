@@ -8,11 +8,10 @@ public class BlogPost {
 
     @Column(columnDefinition = "TEXT")
     private String text;
+
     @Id
     @GeneratedValue
     private int id;
-
-
 
     @ManyToOne
     @JoinColumn (referencedColumnName = "id")
@@ -30,48 +29,26 @@ public class BlogPost {
         this.category = category;
     }
 
-    public BlogPost() {
-    }
+    public BlogPost() { }
 
+    public int getId() { return id; }
 
-    public int getId() {
-        return id;
-    }
+    public void setId(int id) { this.id = id; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public String getTitle() { return title; }
 
-    public String getTitle() {
-        return title;
-    }
+    public void setTitle(String title) { this.title = title; }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    public String getText() { return text; }
 
-    public String getText() {
-        return text;
-    }
+    public void setText(String text) { this.text = text; }
 
-    public void setText(String text) {
-        this.text = text;
-    }
+    public User getAuthor() { return author; }
 
-    public User getAuthor() {
-        return author;
-    }
+    public void setAuthor(User author) { this.author = author; }
 
-    public void setAuthor(User author) {
-        this.author = author;
-    }
+    public Category getCategory() { return category; }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+    public void setCategory(Category category) { this.category = category; }
 }
 

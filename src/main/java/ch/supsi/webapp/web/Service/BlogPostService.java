@@ -10,8 +10,6 @@ import ch.supsi.webapp.web.Repository.RoleRepository;
 import ch.supsi.webapp.web.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import javax.annotation.PostConstruct;
 import java.util.List;
 
@@ -47,9 +45,10 @@ public class BlogPostService {
         }
 
         if (categoryRepository.findAll().size() == 0) {
-            categoryRepository.save(new Category("Cultura"));
-            categoryRepository.save(new Category("Scienza"));
             categoryRepository.save(new Category("Sport"));
+            categoryRepository.save(new Category("Cucina"));
+            categoryRepository.save(new Category("Cronaca nera"));
+            categoryRepository.save(new Category("Economia"));
         }
 
         if (blogPostRepository.findAll().size() == 0) {
@@ -58,25 +57,21 @@ public class BlogPostService {
             blogPost.setCategory(categoryRepository.findByName("Sport"));
             blogPost.setTitle("prova");
             blogPost.setText("prova");
-            add(blogPost);
+            create(blogPost);
         }
     }
 
-    public List<BlogPost> getBlogPostsList() {
+    public List<BlogPost> getBlogPosts() {
         return blogPostRepository.findAll();
     }
 
-    public BlogPost getBlogPostById(int id) {
-        return null;
-    }
+    public BlogPost getBlogPostById(int id) { return blogPostRepository.findBlogPostById(id); }
 
-    public void add(BlogPost blogPost) {
-        blogPostRepository.save(blogPost);
-    }
+    public void create(BlogPost blogPost) { blogPostRepository.save(blogPost); }
 
     public boolean delete(int id) {
-        for (BlogPost p : blogPostRepository.findAll()) {
-            if (p.getId() == id) {
+        for (BlogPost blogpost : blogPostRepository.findAll()) {
+            if (blogpost.getId() == id) {
                 blogPostRepository.deleteById(id);
                 return true;
             }
@@ -84,7 +79,7 @@ public class BlogPostService {
         return false;
     }
 
-    public boolean edit(@PathVariable int id, BlogPost newBlogPost) {
+    public boolean modify(int id, BlogPost newBlogPost) {
         BlogPost blogpost = blogPostRepository.findBlogPostById(id);
         if(blogpost!=null){
             blogpost.setTitle(newBlogPost.getTitle());
