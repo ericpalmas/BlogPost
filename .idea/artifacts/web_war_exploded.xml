@@ -45,6 +45,26 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.0.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.10.RELEASE" />
           <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.0.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.0.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.13" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-jdbc:2.0.6.RELEASE" />
+          <element id="library" level="project" name="Maven: com.zaxxer:HikariCP:2.7.9" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.0.10.RELEASE" />
+          <element id="library" level="project" name="Maven: javax.transaction:javax.transaction-api:1.2" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.2.17.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final" />
+          <element id="library" level="project" name="Maven: org.javassist:javassist:3.22.0-GA" />
+          <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />
+          <element id="library" level="project" name="Maven: org.jboss:jandex:2.0.3.Final" />
+          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.0.1.Final" />
+          <element id="library" level="project" name="Maven: org.springframework.data:spring-data-jpa:2.0.11.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:2.0.11.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-orm:5.0.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.0.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aspects:5.0.10.RELEASE" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.47" />
         </element>
       </element>
       <element id="directory" name="META-INF">
