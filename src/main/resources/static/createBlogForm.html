@@ -6,9 +6,11 @@
     <meta name="keywords" content="HTML">
     <meta name="author" content="Palmas Eric">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <h2>Aggiungi nuovo blog Post</h2> <br>
+    <link rel="stylesheet" type="text/css" href="css/createBlogForm.css">
+
 </head>
 <body>
+<article>
 <nav>
     <a href="index.html">Home</a>
     <a href="createBlogForm.html">Aggiungi blog post</a>
@@ -16,24 +18,23 @@
     <br><br>
 </nav>
  <form>
-    <div>
-    <a>Titolo:<br><input type="text" name="titolo" ><br><br></a>
-    <a>Autore:<br><input type="text" name="autore"><br><br></a>
-    <a>Data:<br><input type="text" name="data"><br><br></a>
-    <a>Categoria: <br>
-        <select>
+    <div><div class="description"> Descrizione:<br>
+        <textarea></textarea>
+    </div>
+    <h3>Titolo:<br><input type="text" name="titolo " size="35" ><br></h3>
+    <h3>Autore:<br><input type="text" name="autore" ><br></h3>
+    <h3>Data:<br><input type="text" name="data" size="35"><br></h3>
+    <h3>Categoria: <br>
+        <select >
             <option value="Sport">Sport</option>
             <option value="Cultura">Cultura</option>
             <option value="Scienza">Scienza</option>
         </select>
         <br><br>
-    </a>
-    <a>Descrizione:<br></a>
-        <textarea rows="7" cols="30">
-
-        </textarea><br><br>
+    </h3>
+        <input class="button" type="submit" value="Aggiungi">
     </div>
-     <input type="submit" value="Aggiungi">
   </form>
+</article>
 </body>
 </html>
