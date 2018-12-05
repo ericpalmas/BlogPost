@@ -71,7 +71,7 @@ body{
     background-image: url("../images/rain_glare_glass_drops_92855_1920x1080.jpg");
 }
 
-section{
+article{
     background-image:linear-gradient(to bottom right, hsl(113, 11%, 70%), hsl(109, 10%, 66%));
     border: 1px solid #888;
     margin: 10px;
@@ -83,7 +83,7 @@ section{
     border-radius: 4px;
     opacity: 0.9;
 }
-section a{
+article a{
     font-size: 30px;
     margin-left: 10px;
     margin-top:10px;
@@ -95,7 +95,7 @@ section a{
     color: black;
 }
 
-section a:hover{
+article a:hover{
     color: #888888;
 }
 
@@ -134,7 +134,7 @@ aside a:hover{
     color: #111;
 }
 
-article{
+section{
     width: 1720px;
     margin-top: 20px;
     margin-left: 20px;

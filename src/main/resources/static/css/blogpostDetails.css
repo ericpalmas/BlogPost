@@ -26,17 +26,24 @@ nav a:hover{
 
 }
 .data{
+    right: 250px;
     font-size: 25px;
     position: relative;
-    bottom: 525px;
-    left: 450px;
+    bottom: 465px;
     padding-top: 35px;
     font-family: -webkit-pictograph;
 }
-.autore{
+.authorSurname{
     font-size: 30px;
     position: absolute;
-    left: 300px;
+    left: 640px;
+    top: 135px;
+    font-family: -webkit-pictograph;
+}
+.authorName{
+    font-size: 30px;
+    position: absolute;
+    left: 550px;
     top: 135px;
     font-family: -webkit-pictograph;
 }
@@ -68,10 +75,11 @@ section a{
     font-size: 20px;
     border: 1px solid #888;
     position: relative;
-    left: 50px;
+    left: 40px;
     padding: 20px;
     text-decoration: none;
     margin-right: 40px;
+    top: 30px;
 }
 
 section a:hover {

@@ -10,12 +10,12 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/createBlogForm.css}">
 </head>
 <body>
-<article>
 <nav>
     <a th:href="@{'/'}">Home</a>
     <a th:href="@{'/blog/new'}">Aggiungi blog post</a>
     <br><br>
 </nav>
+<article>
     <form  th:object="${blogpost}" method="post" >
             <div>
                 <div class="description"> Descrizione:<br>
@@ -27,8 +27,7 @@
                 <select th:field ="*{author}" name="author">
                     <option th:each="user : ${users}" th:text = "${user.getName()}"
                             th:value="${user.getId()}" ></option>
-                </select>
-                <br>
+                </select><br>
 
                 <h3>Categoria: </h3><br>
                 <select th:field ="*{category}">

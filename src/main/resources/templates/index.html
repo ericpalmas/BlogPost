@@ -11,32 +11,31 @@
     <title>Blog Post</title>
 </head>
 <body>
-      <header>
-          <img th:src="@{/images/blog.png}" alt="logo" height="70" width="70" class="myImage"/>
-          <div class="title">MyBlog</div>
-      </header>
-      <nav>
-          <a th:href="@{'/'}">Home</a>
-          <a th:href="@{'/blog/new'}">Aggiungi blog post</a>
-          <br><br>
-      </nav>
-      <article>
-
-         <section  th:each="post : ${posts}">
-             <a th:text="${post.title}" th:href="@{'/blog/'+${post.id}}">Titolo</a>
-             <div class="data" th:text="${post.date}">Data</div>
-             <hr width="100%" size="1" color="000000">
-             <textarea readonly th:text="${post.text}">Descrizione</textarea>
-         </section>
-
+<header>
+    <img th:src="@{/images/blog.png}" alt="logo" height="70" width="70" class="myImage"/>
+    <div class="title">MyBlog</div>
+</header>
+<nav>
+    <a th:href="@{'/'}">Home</a>
+    <a th:href="@{'/blog/new'}">Aggiungi blog post</a>
+    <br><br>
+</nav>
+<section>
+    <article th:each="post : ${posts}">
+        <a th:text="${post.title}" th:href="@{'/blog/'+${post.id}}">Titolo</a>
+        <time class="data" th:text="${post.date}">Data</time>
+        <hr width="100%" size="1" color="000000">
+        <textarea readonly th:text="${post.text}">Descrizione</textarea>
     </article>
-      <aside>
-          <div  class="blogpost"><h3>Lista dei blog post</h3></div>
-          <a th:each="post : ${blogposts}" th:text="${post.title}" th:href="@{'/blog/'+${post.id}}"></a>
-      </aside><br>
-    <footer>
-        <p>Copyleft CC-by 2018 by Eric Palmas</p>
-    </footer>
+</section>
+<aside>
+    <div class="blogpost"><h3>Lista dei blog post</h3></div>
+    <a th:each="post : ${blogposts}" th:text="${post.title}" th:href="@{'/blog/'+${post.id}}"></a>
+</aside>
+<br>
+<footer>
+    <p>Copyleft CC-by 2018 by Eric Palmas</p>
+</footer>
 </div>
 </body>
 </html>

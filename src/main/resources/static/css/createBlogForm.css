@@ -10,8 +10,8 @@ input[type=text]{
 }
 
 select {
+    padding: 10px;
     width: 200px;
-    padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border-radius: 4px;
@@ -40,7 +40,6 @@ nav{
     margin-top: 20px;
     overflow: hidden;
     background-color: #333;
-    margin-bottom: 20px;
     clear: left;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -83,9 +82,8 @@ div{
      width: 500px;
      margin-top: 10px;
      font-size:  20px;
-
  }
 article{
-    height: 800px;
-    background-image:linear-gradient(to bottom right, hsl(150, 12%, 71%), hsl(271, 13%, 32%));
+    height: 750px;
+    background-image: linear-gradient(to bottom right, hsl(150, 12%, 71%), hsl(271, 13%, 32%));
 }

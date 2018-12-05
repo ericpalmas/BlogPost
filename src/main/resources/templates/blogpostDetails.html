@@ -19,13 +19,13 @@
 <section th:post="${post}">
     <div class="titolo" th:text="${post.title}">titolo</div>
     <textarea readonly th:text="${post.text}">descrizione</textarea>
-    <div class="autore" th:text="${post.author.getSurname()}">autore</div>
-    <div class="data" th:text="${post.date}">Data</div>
+    <div class="authorName" th:text="${post.author.getName()}">Nome</div>
+    <div class="authorSurname" th:text="${post.author.getSurname()}">Cognome</div>
+    <time class="data" th:text="${post.date}">Data</time>
     <br>
     <a th:href="@{'/blog/'+${post.id}+'/edit'}">Modifica</a>
     <a th:href="@{'/blog/'+${post.id}+'/delete'}">Elimina</a>
 </section>
-
 </form>
 </body>
 </html>
