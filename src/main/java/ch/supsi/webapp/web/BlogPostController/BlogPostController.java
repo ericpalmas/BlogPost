@@ -34,7 +34,7 @@ public class BlogPostController {
     public ResponseEntity<BlogPost> post(@RequestBody BlogPost blogpost){
         blogPostService.create(blogpost);
         blogpost.setAuthor(userRepository.findUserById(blogpost.getAuthor().getId()));
-        blogpost.setCategory(categoryRepository.findCategoryById(blogpost.getCategory().getId()));
+       // blogpost.setCategory(categoryRepository.findCategoryById(blogpost.getCategory().getId()));
         return new ResponseEntity<>(blogpost, HttpStatus.CREATED);
     }
 
@@ -54,7 +54,7 @@ public class BlogPostController {
             blogPostService.modify(id, blogPost);
             blogPost.setId(id);
             blogPost.setAuthor(userRepository.findUserById(blogPost.getAuthor().getId()));
-            blogPost.setCategory(categoryRepository.findCategoryById(blogPost.getCategory().getId()));
+            //blogPost.setCategory(categoryRepository.findCategoryById(blogPost.getCategory().getId()));
             return new ResponseEntity<>(blogPost,HttpStatus.OK);
         }else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

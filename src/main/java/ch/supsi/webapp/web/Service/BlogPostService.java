@@ -46,9 +46,9 @@ public class BlogPostService {
 
         if (categoryRepository.findAll().size() == 0) {
             categoryRepository.save(new Category("Sport"));
-            categoryRepository.save(new Category("Cucina"));
-            categoryRepository.save(new Category("Cronaca nera"));
-            categoryRepository.save(new Category("Economia"));
+            categoryRepository.save(new Category("Cultura"));
+            categoryRepository.save(new Category("Scienza"));
+
         }
 
         if (blogPostRepository.findAll().size() == 0) {
@@ -65,7 +65,9 @@ public class BlogPostService {
         return blogPostRepository.findAll();
     }
 
-    public BlogPost getBlogPostById(int id) { return blogPostRepository.findBlogPostById(id); }
+    public BlogPost getBlogPostById(int id) { return blogPostRepository.findBlogPostById(id);}
+
+    public Integer getIdByName(String name){return userRepository.findIdByName(name);}
 
     public void create(BlogPost blogPost) { blogPostRepository.save(blogPost); }
 
@@ -89,6 +91,13 @@ public class BlogPostService {
             return true;
         }
         return false;
+    }
+
+    public List<Category> getCategories(){
+        return categoryRepository.findAll();
+    }
+    public List<User> getUsers(){
+        return userRepository.findAll();
     }
 }
 

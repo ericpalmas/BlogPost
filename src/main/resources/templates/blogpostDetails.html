@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="pagina adibita alla visualizzazione dettagliata di un determinato blog post">
+    <meta name="keywords" content="HTML">
+    <meta name="author" content="Palmas Eric">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/blogpostDetails.css}">
+</head>
+<body>
+<nav>
+    <a th:href="@{'/'}">Home</a>
+    <a th:href="@{'/blog/new'}">Aggiungi blog post</a>
+    <br><br>
+</nav>
+<form>
+<section th:post="${post}">
+    <div class="titolo" th:text="${post.title}">titolo</div>
+    <textarea readonly th:text="${post.text}">descrizione</textarea>
+    <div class="autore" th:text="${post.author.getSurname()}">autore</div>
+    <div class="data" th:text="${post.date}">Data</div>
+    <br>
+    <a th:href="@{'/blog/'+${post.id}+'/edit'}">Modifica</a>
+    <a th:href="@{'/blog/'+${post.id}+'/delete'}">Elimina</a>
+</section>
+
+</form>
+</body>
+</html>
+
+
+

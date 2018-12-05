@@ -1,9 +1,19 @@
 package ch.supsi.webapp.web.Model;
 import javax.persistence.*;
-
+import  java.util.Date;
 
 @Entity
 public class BlogPost {
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    private Date date;
+
     private String title;
 
     @Column(columnDefinition = "TEXT")
@@ -18,18 +28,19 @@ public class BlogPost {
     private User author;
 
     @ManyToOne
-    @JoinColumn (referencedColumnName = "id")
+    @JoinColumn (referencedColumnName = "name")
     private Category category;
 
-    public BlogPost(int id, String title, String text, User author, Category category) {
-        this.id = id;
+    public BlogPost(Date date, String title, String text, User author, Category category) {
+        this.date = date;
         this.title = title;
         this.text = text;
         this.author = author;
         this.category = category;
+        this.date = new Date();
     }
 
-    public BlogPost() { }
+    public BlogPost() {  this.date = new Date();}
 
     public int getId() { return id; }
 
@@ -50,5 +61,17 @@ public class BlogPost {
     public Category getCategory() { return category; }
 
     public void setCategory(Category category) { this.category = category; }
+
+    @Override
+    public String toString() {
+        return "BlogPost{" +
+                "date=" + date +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                ", id=" + id +
+                ", author=" + author +
+                ", category=" + category +
+                '}';
+    }
 }
 

@@ -59,7 +59,7 @@ nav a:hover{
 }
 
 body{
-    background-image:linear-gradient(to bottom right, hsl(150, 12%, 71%), hsl(271, 13%, 32%));
+    background-image: url("../images/rain_glare_glass_drops_92855_1920x1080.jpg");
 }
 
 div{
@@ -86,7 +86,6 @@ div{
 
  }
 article{
-    height: 750px;
-
+    height: 800px;
     background-image:linear-gradient(to bottom right, hsl(150, 12%, 71%), hsl(271, 13%, 32%));
 }

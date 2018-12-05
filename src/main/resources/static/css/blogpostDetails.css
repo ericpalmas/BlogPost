@@ -2,7 +2,6 @@ nav{
     margin-top: 20px;
     overflow: hidden;
     background-color: #333;
-    margin-bottom: 20px;
     clear: left;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -21,7 +20,9 @@ nav a:hover{
 }
 .titolo{
     margin: 40px;
+    padding-left: 0px;
     font-size: 60px;
+    font-family: -webkit-pictograph;
 
 }
 .data{
@@ -29,13 +30,15 @@ nav a:hover{
     position: relative;
     bottom: 525px;
     left: 450px;
+    padding-top: 35px;
+    font-family: -webkit-pictograph;
 }
 .autore{
     font-size: 30px;
-    position: relative;
-    bottom: 495px;
+    position: absolute;
     left: 300px;
-
+    top: 135px;
+    font-family: -webkit-pictograph;
 }
 textarea{
     width: 1000px;
@@ -45,8 +48,32 @@ textarea{
     border: 1px solid #888;
     margin-left: 40px;
 }
-
+section{
+    padding-top: 1px;
+    background-image: linear-gradient(to bottom right, hsl(150, 12%, 71%), hsl(271, 13%, 32%));
+    height: 730px;
+}
 body{
-    background-image:linear-gradient(to bottom right, hsl(150, 12%, 71%), hsl(271, 13%, 32%));
-    height: 750px;
+    background-image: url("../images/rain_glare_glass_drops_92855_1920x1080.jpg");
+    height: 800px;
+}
+
+section a{
+    width: 150px;
+    height: 60px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    border: 1px solid #888;
+    position: relative;
+    left: 50px;
+    padding: 20px;
+    text-decoration: none;
+    margin-right: 40px;
+}
+
+section a:hover {
+    background-color: #45a049;
 }
