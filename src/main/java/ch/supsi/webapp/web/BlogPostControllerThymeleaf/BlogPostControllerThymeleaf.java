@@ -17,7 +17,10 @@ public class BlogPostControllerThymeleaf {
 
     @GetMapping("/")
     public String get(Model model) {
-        model.addAttribute("posts", blogPostService.getBlogPosts().subList(0,3));
+        if(blogPostService.getBlogPosts().size()<3)
+            model.addAttribute("posts", blogPostService.getBlogPosts().subList(0,blogPostService.getBlogPosts().size()));
+        else
+            model.addAttribute("posts", blogPostService.getBlogPosts().subList(0,3));
         model.addAttribute("blogposts", blogPostService.getBlogPosts());
         return "index";
     }

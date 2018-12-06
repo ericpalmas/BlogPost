@@ -85,6 +85,7 @@ public class BlogPostService {
         BlogPost blogpost = blogPostRepository.findBlogPostById(id);
         if(blogpost!=null){
             blogpost.setTitle(newBlogPost.getTitle());
+            blogpost.setAuthor(newBlogPost.getAuthor());
             blogpost.setCategory(newBlogPost.getCategory());
             blogpost.setText(newBlogPost.getText());
             blogPostRepository.save(blogpost);
