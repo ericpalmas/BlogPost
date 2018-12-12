@@ -19,7 +19,7 @@ public class BlogPostControllerThymeleaf {
 
     @GetMapping("/")
     public String get(Model model) {
-        if(blogPostService.getBlogPosts().size()<blogPostService.getBlogPosts().size()) {
+        if(blogPostService.getBlogPosts().size()<3) {
             model.addAttribute("posts", blogPostService.getBlogPosts().subList(0, blogPostService.getBlogPosts().size()));
         }
         else {
