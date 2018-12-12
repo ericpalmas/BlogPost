@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html xmlns:th=http://www.thymeleaf.org th:replace="~{master :: layout(~{::link},~{::title},~{::meta},~{::main},_)}">
+<head>
+    <title>Home</title>
+    <meta name="description" content="Home page del blog">
+    <meta name="keywords" content="blog,post">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+</head>
+<body>
+
+<main>
+    <img th:src="@{/images/blog.png}" id="myImage" width="100px" class="img-fluid mx-auto d-block" >
+    <nav class="topnav" id="myTopnav">
+        <a th:href="@{'/'}" class="active">Home</a>
+        <a th:href="@{'/blog/new'}">New BlogPost</a>
+    </nav>
+    <br><br>
+
+    <section class="container">
+
+        <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4 font-italic">Notizie in evidenza</h1>
+            </div>
+        </div>
+
+        <article class="row">
+           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" data-aos="fade-right" th:each="post : ${posts}" >
+              <div class="card text-center" >
+                <div th:if="${post.getCategory().getName()=='Sport'}">
+                    <img class="card-img-top" name="Sport" th:src="@{/images/noah-silliman-246027-unsplash.jpg}" alt="" width="100%"/>
+                </div>
+                <div th:if="${post.getCategory().getName()=='Cultura'}">
+                    <img class="card-img-top" name="Cultura" th:src="@{/images/annie-spratt-749650-unsplash.jpg}" alt="" width="100%"/>
+                </div>
+                <div th:if="${post.getCategory().getName()=='Scienza'}">
+                    <img class="card-img-top" name="Sport" th:src="@{/images/elevate-755051-unsplash.jpg}" alt="" width="100%"/>
+                </div>
+                <div class="card-block">
+                    <h4 class="card-title" th:text="${post.title}">Post Title</h4>
+                    <p class="card-text" th:text="${post.text}">Description.</p>
+                    <a class="btn btn-default" href="#" th:href="@{'/blog/'+${post.id}}">Read More</a>
+                </div>
+              </div>
+           </div>
+        </article>
+
+        <aside class="col-md-4 blog-sidebar">
+            <div class="p-3" >
+                <h4 class="font-italic">Lista dei blogpost</h4>
+                <ol class="list-unstyled mb-0" th:each="post : ${blogposts}">
+                    <li><a th:href="@{'/blog/'+${post.id}}" th:text="${post.title}">Titolo</a></li>
+                </ol>
+            </div>
+        </aside>
+
+    </section>
+</main>
+</body>
+</html>

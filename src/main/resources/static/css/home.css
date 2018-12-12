@@ -1,0 +1,46 @@
+.container{
+    padding-top: 70px;
+    margin-top: 10px;
+    margin-bottom:10px;
+
+}
+#myImage{
+    margin: 20px;
+}
+.categoryImage{
+    height: 100px;
+    width: 100px;
+}
+.card-title{
+    padding-top: 20px;
+}
+
+.jumbotron-fluid{
+    width: 1110px;
+}
+.topnav {
+    background-color: #343a40!important;
+    overflow: hidden;
+    margin-bottom: -70px;
+}
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.active {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.topnav .icon {
+    display: none;
+}

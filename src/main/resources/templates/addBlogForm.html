@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html xmlns:th=http://www.thymeleaf.org th:replace="~{master :: layout(~{::link},~{::title},~{::meta},~{::main},_)}">
+<head>
+    <title>Home</title>
+    <meta name="description" content="Pagina per l'inserimento di un Blog">
+    <meta name="keywords" content="blog,post">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/addBlogForm.css}">
+</head>
+<body>
+
+
+<main>
+    <nav class="topnav" id="myTopnav">
+        <a th:href="@{'/'}" class="active">Home</a>
+        <a th:href="@{'/blog/new'}">New BlogPost</a>
+    </nav>
+    <br><br>
+
+
+    <article>
+        <div class="col-md-8 order-md-1">
+            <form class="needs-validation" novalidate="" th:object="${blogpost}" method="post">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="title">Titolo</label>
+                        <input type="text" class="form-control" id="title" placeholder="" th:field="*{title}">
+                        <div class="invalid-feedback">Title is required.</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description">Descrizione</label>
+                    <input type="text" class="form-control" id="description"  required="" th:field="*{text}">
+                    <div class="invalid-feedback">Description is empty.</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <label for="country">Autore</label>
+                        <select class="custom-select d-block w-100" id="country" required="" th:field ="*{author}">
+                            <option th:each="user : ${users}" th:text = "${user.getName()}" th:value="${user.getId()}" ></option>
+                        </select>
+                        <div class="invalid-feedback">Please select author.</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="state">Categoria</label>
+                        <select class="custom-select d-block w-100" id="state" required="" th:field ="*{category}">
+                            <option th:each="category : ${categories}" th:text = "${category.name}"
+                                    th:value="${category.name}"></option>
+                        </select>
+                        <div class="invalid-feedback">Please provide a valid state.</div>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+                <button id="save" class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+
+            </form>
+        </div>
+    </article>
+
+</main>
+</body>
+</html>

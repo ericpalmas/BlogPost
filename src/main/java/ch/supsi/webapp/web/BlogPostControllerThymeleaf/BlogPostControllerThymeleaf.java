@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+
 
 @Controller
 public class BlogPostControllerThymeleaf {
@@ -17,19 +19,21 @@ public class BlogPostControllerThymeleaf {
 
     @GetMapping("/")
     public String get(Model model) {
-        if(blogPostService.getBlogPosts().size()<3)
-            model.addAttribute("posts", blogPostService.getBlogPosts().subList(0,blogPostService.getBlogPosts().size()));
-        else
-            model.addAttribute("posts", blogPostService.getBlogPosts().subList(0,3));
+        if(blogPostService.getBlogPosts().size()<blogPostService.getBlogPosts().size()) {
+            model.addAttribute("posts", blogPostService.getBlogPosts().subList(0, blogPostService.getBlogPosts().size()));
+        }
+        else {
+            model.addAttribute("posts", blogPostService.getBlogPosts().subList(0, 3));
+        }
         model.addAttribute("blogposts", blogPostService.getBlogPosts());
-        return "index";
+        return "home";
     }
 
     @GetMapping("/blog/{id}")
     public String blogpostDetails(Model model, @PathVariable int id) {
         if (blogPostService.getBlogPostById(id) != null)
             model.addAttribute("post", blogPostService.getBlogPostById(id));
-        return "blogpostDetails";
+        return "blogDetails";
     }
 
     @GetMapping("/blog/new")
@@ -37,7 +41,7 @@ public class BlogPostControllerThymeleaf {
         model.addAttribute("blogpost", blogPost);
         model.addAttribute("categories", blogPostService.getCategories());
         model.addAttribute("users", blogPostService.getUsers());
-        return "createBlogForm";
+        return "addBlogForm";
     }
 
     @PostMapping("/blog/new")
@@ -46,12 +50,13 @@ public class BlogPostControllerThymeleaf {
         return "redirect:/";
     }
 
+
     @GetMapping("/blog/{id}/edit")
     public String put(Model model, @PathVariable int id, @ModelAttribute BlogPost blogPost) {
         model.addAttribute("blogpost", blogPostService.getBlogPostById(id));
         model.addAttribute("categories", blogPostService.getCategories());
         model.addAttribute("users", blogPostService.getUsers());
-        return "createBlogForm";
+        return "addBlogForm";
     }
 
     @PostMapping("/blog/{id}/edit")

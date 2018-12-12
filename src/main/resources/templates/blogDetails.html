@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th=http://www.thymeleaf.org th:replace="~{master :: layout(~{::link},~{::title},~{::meta},~{::main},_)}">
+<head>
+    <title>Home</title>
+    <meta name="description" content="Pagina dei descrittiva di un Blog">
+    <meta name="keywords" content="blog,post">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/blogDetails.css}">
+</head>
+<body>
+
+
+<main>
+    <nav class="topnav" id="myTopnav">
+        <a th:href="@{'/'}" class="active">Home</a>
+        <a th:href="@{'/blog/new'}">New BlogPost</a>
+    </nav>
+    <br><br>
+    <article th:post="${post}">
+        <div class="col-lg-8">
+            <h1 class="mt-4" th:text="${post.title}">Titolo</h1>
+            <p class="lead">
+                by
+                <a  th:text="${post.author.getName()}">Name</a>
+                <a  th:text="${post.author.getSurname()}">Surname</a>
+            </p>
+            <hr>
+            Posted on <a th:text="${post.date.toLocaleString()}"> Date</a>
+            <hr>
+            <p class="lead" th:text="${post.text}">Description</p>
+            <hr>
+
+            <a th:href="@{'/blog/'+${post.id}+'/edit'}" class="btn btn-primary btn-lg" role="button">Modify</a>
+            <a th:href="@{'/blog/'+${post.id}+'/delete'}" class="btn btn-primary btn-lg" role="button" >Delete</a>
+        </div>
+    </article>
+</main>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org"
+             th:fragment="layout(links,title,metas,content,footer)">
+<head>
+    <meta name="author" content="Marco Bernasconi">
+    <link th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}" rel="stylesheet">
+    <th:block th:replace="${metas}" />
+    <link th:replace="${links}"/>
+    <title th:include="${title}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+</head>
+<body>
+<main th:include="${content}">
+    <section>
+        <h2>content</h2>
+    </section>
+</main>
+<footer class="blog-footer"  th:include="${footer}">
+    <p>Blog built by <a>Eric Palmas</a></p>
+</footer>
+</body>
+</html>
