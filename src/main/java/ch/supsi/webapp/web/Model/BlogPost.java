@@ -24,7 +24,6 @@ public class BlogPost {
     private int id;
 
     @ManyToOne
-    @JoinColumn (referencedColumnName = "id")
     private User author;
 
     @ManyToOne

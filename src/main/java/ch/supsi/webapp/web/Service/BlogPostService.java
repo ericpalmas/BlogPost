@@ -9,6 +9,7 @@ import ch.supsi.webapp.web.Repository.CategoryRepository;
 import ch.supsi.webapp.web.Repository.RoleRepository;
 import ch.supsi.webapp.web.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -29,17 +30,20 @@ public class BlogPostService {
     @Autowired
     private  RoleRepository roleRepository;
 
+    private BCryptPasswordEncoder cryptPasswordEncoder;
 
     @PostConstruct
     public void postContructor() {
         if (roleRepository.findAll().size() == 0) {
-            roleRepository.save(new Role("admin"));
-            roleRepository.save(new Role("user"));
+            roleRepository.save(new Role("ROLE_ADMIN"));
+            roleRepository.save(new Role("ROLE_USER"));
         }
 
         if (userRepository.findAll().size() == 0) {
-            User admin = new User(1, roleRepository.findRoleByName("admin"), "admin", "Luca", "Rossi");
-            User user = new User(2, roleRepository.findRoleByName("user"), "user", "Pietro", "Verdi");
+            cryptPasswordEncoder = new BCryptPasswordEncoder();
+            String encodedPassword = cryptPasswordEncoder.encode("admin");
+            User admin = new User( roleRepository.findRoleByName("ROLE_ADMIN"), "admin", "Luca", "Rossi",encodedPassword);
+            User user = new User( roleRepository.findRoleByName("ROLE_USER"), "user", "Pietro", "Verdi",encodedPassword);
             userRepository.save(admin);
             userRepository.save(user);
         }
@@ -48,12 +52,11 @@ public class BlogPostService {
             categoryRepository.save(new Category("Sport"));
             categoryRepository.save(new Category("Cultura"));
             categoryRepository.save(new Category("Scienza"));
-
         }
 
         if (blogPostRepository.findAll().size() == 0) {
             BlogPost blogPost = new BlogPost();
-            blogPost.setAuthor(userRepository.findUserByUsername("admin"));
+            blogPost.setAuthor( userRepository.findUserByUsername("admin"));
             blogPost.setCategory(categoryRepository.findByName("Sport"));
             blogPost.setTitle("prova");
             blogPost.setText("prova");
@@ -69,7 +72,9 @@ public class BlogPostService {
 
     public Integer getIdByName(String name){return userRepository.findIdByName(name);}
 
-    public void create(BlogPost blogPost) { blogPostRepository.save(blogPost); }
+    public void create(BlogPost blogPost) {
+        System.out.println(blogPost);
+        blogPostRepository.save(blogPost); }
 
     public boolean delete(int id) {
         for (BlogPost blogpost : blogPostRepository.findAll()) {
@@ -97,8 +102,30 @@ public class BlogPostService {
     public List<Category> getCategories(){
         return categoryRepository.findAll();
     }
+
     public List<User> getUsers(){
         return userRepository.findAll();
+    }
+
+    public User findUserByUsername(String username){ return userRepository.findUserByUsername(username);}
+
+    public void saveUser(User user) {
+        cryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = cryptPasswordEncoder.encode(user.getPassword());
+        System.out.println(user);
+        User newUser = new User(roleRepository.findRoleByName("ROLE_USER"), user.getUsername(), user.getName(), user.getSurname(),encodedPassword);
+        userRepository.save(newUser);
+    }
+
+    public boolean isPresent(User user) {
+        User tmp = userRepository.findUserByUsername(user.getUsername());
+        if (tmp == null)
+            return false;
+        return tmp.getUsername().compareToIgnoreCase(user.getUsername()) == 0;
+    }
+
+    public User getUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
     }
 }
 

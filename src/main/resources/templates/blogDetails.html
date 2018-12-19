@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html xmlns:th=http://www.thymeleaf.org th:replace="~{master :: layout(~{::link},~{::title},~{::meta},~{::main},_)}">
+<html xmlns:th=http://www.thymeleaf.org xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{master :: layout(~{::link},~{::title},~{::meta},~{::main},_)}">
 <head>
     <title>Home</title>
     <meta name="description" content="Pagina dei descrittiva di un Blog">
@@ -14,6 +15,11 @@
     <nav class="topnav" id="myTopnav">
         <a th:href="@{'/'}" class="active">Home</a>
         <a th:href="@{'/blog/new'}">New BlogPost</a>
+        <li class="rightli" style="float:right">
+            <a class = "login" sec:authorize="!isAuthenticated()" th:href="@{'/login'}">Login</a>
+            <a class = "logout" sec:authorize="isAuthenticated()" th:href="@{'/logout'}">Logout</a>
+            <a class = "userLogged" th:if="${#authentication.name!='anonymousUser'}" th:text="${#authentication.name}">Username</a>
+        </li>
     </nav>
     <br><br>
     <article th:post="${post}">
@@ -21,8 +27,7 @@
             <h1 class="mt-4" th:text="${post.title}">Titolo</h1>
             <p class="lead">
                 by
-                <a  th:text="${post.author.getName()}">Name</a>
-                <a  th:text="${post.author.getSurname()}">Surname</a>
+                <!--<a  th:text="${post.author.getUsername()}">Username</a>-->
             </p>
             <hr>
             Posted on <a th:text="${post.date.toLocaleString()}"> Date</a>

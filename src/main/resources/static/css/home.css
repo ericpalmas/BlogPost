@@ -44,3 +44,7 @@
 .topnav .icon {
     display: none;
 }
+#homeLogo{
+    height: 100px;
+    width: 100px;
+}

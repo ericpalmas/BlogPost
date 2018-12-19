@@ -1,0 +1,23 @@
+#cardBody{
+    height: 400px;
+    width: 400px;
+    margin-top: 150px;
+    margin-bottom: 180px;
+    border: 1px solid #343a40;
+}
+#login{
+    margin-top: 30px;
+    height: 45px;
+    width: 100px;
+}
+.signUp{
+    padding-left: 4px;
+}
+.card-header{
+    background-color: #343a40!important;
+    color: white;
+}
+.card-footer{
+    background-color: #343a40!important;
+    color: white;
+}

@@ -16,16 +16,20 @@ public class User {
     private String username;
 
     private String name;
+
     private String surname;
+
+    private String password;
 
     public User() { }
 
-    public User(int id, Role role, String username, String name, String surname) {
-        this.id = id;
+
+    public User(Role role, String username, String name, String surname,String password) {
         this.role = role;
         this.username = username;
         this.name = name;
         this.surname = surname;
+        this.password = password;
     }
 
     public int getId() {
@@ -63,4 +67,20 @@ public class User {
     public String getUsername() { return username; }
 
     public void setUsername(String username) { this.username = username; }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", role=" + role +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
