@@ -127,6 +127,10 @@ public class BlogPostService {
     public User getUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
+
+    public User findUserById(int id) {
+        return userRepository.findUserById(id);
+    }
 }
 
 

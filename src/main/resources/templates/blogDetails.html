@@ -35,8 +35,9 @@
             <p class="lead" th:text="${post.text}">Description</p>
             <hr>
 
-            <a th:href="@{'/blog/'+${post.id}+'/edit'}" class="btn btn-primary btn-lg" role="button">Modify</a>
-            <a th:href="@{'/blog/'+${post.id}+'/delete'}" class="btn btn-primary btn-lg" role="button" >Delete</a>
+                <a th:if="${#authentication.name.equals(post.author.username)}" th:href="@{'/blog/'+${post.id}+'/edit'}" class="btn btn-primary btn-lg" role="button">Modify</a>
+                <a th:if="${#authentication.name.equals(post.author.username)}" th:href="@{'/blog/'+${post.id}+'/delete'}" class="btn btn-primary btn-lg" role="button" >Delete</a>
+
         </div>
     </article>
 </main>

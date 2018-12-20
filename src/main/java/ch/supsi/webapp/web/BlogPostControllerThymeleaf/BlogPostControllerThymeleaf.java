@@ -65,7 +65,7 @@ public class BlogPostControllerThymeleaf {
     public String blogpostDetails(Model model, @PathVariable int id) {
         if (blogPostService.getBlogPostById(id) != null)
             model.addAttribute("post", blogPostService.getBlogPostById(id));
-        return "blogDetails";
+       return "blogDetails";
     }
 
     @GetMapping("/blog/new")
