@@ -27,7 +27,7 @@
             <h1 class="mt-4" th:text="${post.title}">Titolo</h1>
             <p class="lead">
                 by
-                <!--<a  th:text="${post.author.getUsername()}">Username</a>-->
+                <a  th:text="${post.author.getUsername()}">Username</a>
             </p>
             <hr>
             Posted on <a th:text="${post.date.toLocaleString()}"> Date</a>

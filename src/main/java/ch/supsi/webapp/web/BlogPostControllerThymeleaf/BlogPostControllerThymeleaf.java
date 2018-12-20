@@ -23,13 +23,13 @@ public class BlogPostControllerThymeleaf {
 
 
     @GetMapping("/login")
-    public String getLogin(Model model) {
+    public String login(Model model) {
         model.addAttribute("user", new User());
         return "login";
     }
 
     @GetMapping("/register")
-    public String getRegister(Model model) {
+    public String register(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
@@ -75,15 +75,6 @@ public class BlogPostControllerThymeleaf {
         model.addAttribute("users", blogPostService.getUsers());
         return "addBlogForm";
     }
-
-//    @PostMapping("/blog/new")
-//    public String submit(BlogPost blogPost, @RequestParam("author_name") String name) {
-//        //blogPost.setAuthor(blogPostService.get);
-//        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        blogPost.setAuthor(blogPostService.getUserByUsername(user.getUsername()));
-//        blogPostService.create(blogPost);
-//        return "redirect:/";
-//    }
 
     @PostMapping("/blog/new")
     public String submit(BlogPost blogPost) {
