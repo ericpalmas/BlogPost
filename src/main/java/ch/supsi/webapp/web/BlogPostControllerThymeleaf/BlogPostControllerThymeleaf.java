@@ -1,15 +1,17 @@
 package ch.supsi.webapp.web.BlogPostControllerThymeleaf;
 import ch.supsi.webapp.web.Model.BlogPost;
-import ch.supsi.webapp.web.Model.Role;
 import ch.supsi.webapp.web.Model.User;
 import ch.supsi.webapp.web.Service.BlogPostService;
 import ch.supsi.webapp.web.Service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -65,6 +67,19 @@ public class BlogPostControllerThymeleaf {
     public String blogpostDetails(Model model, @PathVariable int id) {
         if (blogPostService.getBlogPostById(id) != null)
             model.addAttribute("post", blogPostService.getBlogPostById(id));
+
+//        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        /////////////class cast exception/////////////////
+//        User admin = blogPostService.findUserByUsername(user.getUsername());
+//        boolean roleAdmin = false;
+//
+//            if(admin.getRole().getName().equals("ROLE_ADMIN")){
+//                roleAdmin = true;
+//            }else{
+//                roleAdmin = false;
+//            }
+//
+//        model.addAttribute("RoleAdmin",roleAdmin);
        return "blogDetails";
     }
 
@@ -86,7 +101,7 @@ public class BlogPostControllerThymeleaf {
 
 
     @GetMapping("/blog/{id}/edit")
-    public String put(Model model, @PathVariable int id, @ModelAttribute BlogPost blogPost) {
+    public String put(Model model, @PathVariable int id) {
         model.addAttribute("blogpost", blogPostService.getBlogPostById(id));
         model.addAttribute("categories", blogPostService.getCategories());
         model.addAttribute("users", blogPostService.getUsers());
@@ -94,7 +109,7 @@ public class BlogPostControllerThymeleaf {
     }
 
     @PostMapping("/blog/{id}/edit")
-    public String modify(@PathVariable int id, @ModelAttribute BlogPost blogPost) {
+    public String modify(@PathVariable int id, BlogPost blogPost) {
         blogPostService.modify(id,blogPost);
         return "redirect:/";
     }

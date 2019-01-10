@@ -28,4 +28,11 @@ article{
 .topnav .icon {
     display: none;
 }
+#myImage{
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+#myImage:hover{
+    background-color: #343a40!important;
 
+}

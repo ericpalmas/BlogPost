@@ -13,20 +13,22 @@
 
 <main>
     <nav class="topnav" id="myTopnav">
-        <a th:href="@{'/'}" class="active">Home</a>
+        <a  th:href="@{'/'}" id="myImage"><img th:src="@{/images/blog.png}" width="30" height="30"  alt="" ></a>
+        <a th:href="@{'/'}" >Home</a>
         <a th:href="@{'/blog/new'}">New BlogPost</a>
         <li class="rightli" style="float:right">
             <a class = "login" sec:authorize="!isAuthenticated()" th:href="@{'/login'}">Login</a>
             <a class = "logout" sec:authorize="isAuthenticated()" th:href="@{'/logout'}">Logout</a>
-            <a class = "userLogged" th:if="${#authentication.name!='anonymousUser'}" th:text="${#authentication.name}">Username</a>
+            <a class = "userLogged" th:if="${#authentication.name!='anonymousUser'}" th:text="${#authentication.name}" th:href="@{'/'}">Username</a>
         </li>
     </nav>
     <br><br>
 
 
     <article>
+
         <div class="col-md-8 order-md-1">
-            <form class="needs-validation" novalidate="" th:action="@{/blog/new}" th:object="${blogpost}" method="post">
+            <form class="needs-validation"  th:object="${blogpost}" method="post">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="title">Titolo</label>
@@ -43,7 +45,6 @@
                 </div>
 
                 <div class="row">
-                    <!--<input type="hidden" name="author_name" th:value="*{#authentication.getName()}">-->
                     <div class="col-md-4 mb-3">
                         <label for="state">Categoria</label>
                         <select class="custom-select d-block w-100" id="state" required="" th:field ="*{category}">

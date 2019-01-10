@@ -5,7 +5,12 @@
 
 }
 #myImage{
-    margin: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+#myImage:hover{
+    background-color: #343a40!important;
+
 }
 .categoryImage{
     height: 100px;

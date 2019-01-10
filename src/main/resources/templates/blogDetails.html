@@ -13,12 +13,13 @@
 
 <main>
     <nav class="topnav" id="myTopnav">
-        <a th:href="@{'/'}" class="active">Home</a>
+        <a  th:href="@{'/'}" id="myImage"><img th:src="@{/images/blog.png}" width="30" height="30"  alt="" ></a>
+        <a th:href="@{'/'}" >Home</a>
         <a th:href="@{'/blog/new'}">New BlogPost</a>
         <li class="rightli" style="float:right">
             <a class = "login" sec:authorize="!isAuthenticated()" th:href="@{'/login'}">Login</a>
             <a class = "logout" sec:authorize="isAuthenticated()" th:href="@{'/logout'}">Logout</a>
-            <a class = "userLogged" th:if="${#authentication.name!='anonymousUser'}" th:text="${#authentication.name}">Username</a>
+            <a class = "userLogged" th:if="${#authentication.name!='anonymousUser'}" th:text="${#authentication.name}" th:href="@{'/'}">Username</a>
         </li>
     </nav>
     <br><br>
@@ -34,10 +35,8 @@
             <hr>
             <p class="lead" th:text="${post.text}">Description</p>
             <hr>
-
-                <a th:if="${#authentication.name.equals(post.author.username)}" th:href="@{'/blog/'+${post.id}+'/edit'}" class="btn btn-primary btn-lg" role="button">Modify</a>
-                <a th:if="${#authentication.name.equals(post.author.username)}" th:href="@{'/blog/'+${post.id}+'/delete'}" class="btn btn-primary btn-lg" role="button" >Delete</a>
-
+                <a  th:if="${#authentication.name.equals(post.author.username) && #authorization.expression('hasRole(''ROLE_ADMIN'')')} " th:href="@{'/blog/'+${post.id}+'/edit'}" class="btn btn-primary btn-lg" role="button">Modify</a>
+                <a  th:if="${#authentication.name.equals(post.author.username) && #authorization.expression('hasRole(''ROLE_ADMIN'')')} " th:href="@{'/blog/'+${post.id}+'/delete'}" class="btn btn-primary btn-lg" role="button" >Delete</a>
         </div>
     </article>
 </main>

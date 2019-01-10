@@ -11,9 +11,10 @@
 <body>
 
 <main>
-    <img th:src="@{/images/blog.png}" id="myImage" width="100px" class="img-fluid mx-auto d-block" >
+
     <nav class="topnav" id="myTopnav">
-        <a th:href="@{'/'}" class="active">Home</a>
+        <a  th:href="@{'/'}" id="myImage"><img th:src="@{/images/blog.png}" width="30" height="30"  alt="" ></a>
+        <a th:href="@{'/'}" >Home</a>
         <a th:href="@{'/blog/new'}">New BlogPost</a>
         <li class="rightli" style="float:right">
             <a class = "login" sec:authorize="!isAuthenticated()" th:href="@{'/login'}">Login</a>

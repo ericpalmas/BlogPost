@@ -39,6 +39,7 @@ public class BlogPostService {
             roleRepository.save(new Role("ROLE_USER"));
         }
 
+
         if (userRepository.findAll().size() == 0) {
             cryptPasswordEncoder = new BCryptPasswordEncoder();
             String encodedPassword = cryptPasswordEncoder.encode("admin");
@@ -56,7 +57,7 @@ public class BlogPostService {
 
         if (blogPostRepository.findAll().size() == 0) {
             BlogPost blogPost = new BlogPost();
-            blogPost.setAuthor( userRepository.findUserByUsername("admin"));
+            blogPost.setAuthor(userRepository.findUserByUsername("admin"));
             blogPost.setCategory(categoryRepository.findByName("Sport"));
             blogPost.setTitle("prova");
             blogPost.setText("prova");
@@ -90,7 +91,6 @@ public class BlogPostService {
         BlogPost blogpost = blogPostRepository.findBlogPostById(id);
         if(blogpost!=null){
             blogpost.setTitle(newBlogPost.getTitle());
-            blogpost.setAuthor(newBlogPost.getAuthor());
             blogpost.setCategory(newBlogPost.getCategory());
             blogpost.setText(newBlogPost.getText());
             blogPostRepository.save(blogpost);
