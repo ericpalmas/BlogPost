@@ -1,27 +1,5 @@
-.container{
-    padding-top: 70px;
-    margin-top: 10px;
-    margin-bottom:10px;
-
-}
-#myImage{
-    padding-bottom: 0px;
-    margin-bottom: 0px;
-}
-#myImage:hover{
-    background-color: #343a40!important;
-
-}
-.categoryImage{
-    height: 100px;
-    width: 100px;
-}
-.card-title{
-    padding-top: 20px;
-}
-
-.jumbotron-fluid{
-    width: 1110px;
+#error{
+    padding-bottom: 50rem;
 }
 .topnav {
     background-color: #343a40!important;
@@ -53,13 +31,4 @@
 #homeLogo{
     height: 100px;
     width: 100px;
-}
-#wrapper {
-    display: flex;
-}
-#all {
-    flex: 0 0 65%;
-}
-#categories {
-    flex: 1;
 }

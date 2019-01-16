@@ -1,9 +1,14 @@
 package ch.supsi.webapp.web.Model;
 import javax.persistence.*;
+import java.util.ArrayList;
 import  java.util.Date;
 
 @Entity
 public class BlogPost {
+
+
+    private ArrayList<Commento> comments;
+
     public Date getDate() {
         return date;
     }
@@ -37,9 +42,12 @@ public class BlogPost {
         this.author = author;
         this.category = category;
         this.date = new Date();
+        this.comments = new ArrayList<>();
     }
 
-    public BlogPost() {  this.date = new Date();}
+    public BlogPost() {
+        this.comments = new ArrayList<>();
+        this.date = new Date();}
 
     public int getId() { return id; }
 
@@ -59,12 +67,23 @@ public class BlogPost {
 
     public Category getCategory() { return category; }
 
+    public ArrayList<Commento> getComments() {
+        return comments;
+    }
+
+    public void setComment(Commento commento){
+
+        System.out.println(commento);
+        comments.add(commento);
+    }
+
     public void setCategory(Category category) { this.category = category; }
 
     @Override
     public String toString() {
         return "BlogPost{" +
-                "date=" + date +
+                "comments=" + comments +
+                ", date=" + date +
                 ", title='" + title + '\'' +
                 ", text='" + text + '\'' +
                 ", id=" + id +

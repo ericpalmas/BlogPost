@@ -56,15 +56,28 @@
            </div>
         </article>
 
-        <aside class="col-md-4 blog-sidebar">
-            <div class="p-3" >
-                <h4 class="font-italic">Lista dei blogpost</h4>
-                <ol class="list-unstyled mb-0" th:each="post : ${blogposts}">
-                    <li><a th:href="@{'/blog/'+${post.id}}" th:text="${post.title}">Titolo</a></li>
-                </ol>
-            </div>
-        </aside>
+        <div id="wrapper">
+            <aside class="col-md-4 blog-sidebar" id="all">
+                <div class="p-3" >
+                    <h4 class="font-italic">Lista dei blogpost</h4>
+                    <ol class="list-unstyled mb-0" th:each="post : ${blogposts}">
+                        <li><a th:href="@{'/blog/'+${post.id}}" th:text="${post.title}">Titolo</a></li>
+                    </ol>
+                </div>
+            </aside>
 
+            <!--<aside class="col-md-4 blog-sidebar" id="categories">-->
+                <!--<div class="p-3" >-->
+                    <!--<h4 class="font-italic">Lista dei blogpost</h4>-->
+                    <!--<ol class="list-unstyled mb-0" th:each="post : ${blogposts}">-->
+                        <!--<li><a th:href="@{'/blog/'+${post.id}}" >Sport</a></li>-->
+                        <!--<li><a th:href="@{'/blog/'+${post.id}}" >Cultura</a></li>-->
+                        <!--<li><a th:href="@{'/blog/'+${post.id}}" >Scienza</a></li>-->
+                    <!--</ol>-->
+                <!--</div>-->
+            <!--</aside>-->
+
+        </div>
     </section>
 </main>
 </body>

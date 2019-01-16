@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns:th=http://www.thymeleaf.org xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{master :: layout(~{::link},~{::title},~{::meta},~{::main},_)}">
+<head>
+    <title>Home</title>
+    <meta name="description" content="Pagina dei descrittiva di un Blog">
+    <meta name="keywords" content="blog,post">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/blogDetails.css}">
+</head>
+<body>
+
+
+<main>
+    <nav class="topnav" id="myTopnav">
+        <a  th:href="@{'/'}" id="myImage"><img th:src="@{/images/blog.png}" width="30" height="30"  alt="" ></a>
+        <a th:href="@{'/'}" >Home</a>
+        <a th:href="@{'/blog/new'}">New BlogPost</a>
+        <li class="rightli" style="float:right">
+            <a class = "login" sec:authorize="!isAuthenticated()" th:href="@{'/login'}">Login</a>
+            <a class = "logout" sec:authorize="isAuthenticated()" th:href="@{'/logout'}">Logout</a>
+            <a class = "userLogged" th:if="${#authentication.name!='anonymousUser'}" th:text="${#authentication.name}" th:href="@{'/'}">Username</a>
+        </li>
+    </nav>
+
+    <article>
+        <div class="col-md-8 order-md-1">
+            <form class="needs-validation"  th:object="${blogpost}" method="post">
+                <hr><hr>
+                <label th:text="*{text}"></label>
+                <hr>
+                <div class="mb-3" th:object="${commento}">
+                    <label for="description">Scrivi il tuo commento</label>
+                    <hr>
+                    <input type="text" class="form-control" id="description"  required="" th:field="*{description}">
+                    <div class="invalid-feedback">Description is empty.</div>
+                </div>
+
+                <hr class="mb-4">
+                <button id="save" class="btn btn-primary btn-lg btn-block" type="submit">add comment</button>
+            </form>
+        </div>
+    </article>
+
+    <br><br>
+</main>
+</body>
+</html>
