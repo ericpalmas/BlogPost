@@ -2,11 +2,14 @@ package ch.supsi.webapp.web.Model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Commento {
 
+    @ManyToOne
     @Id
     @GeneratedValue
     private int id;

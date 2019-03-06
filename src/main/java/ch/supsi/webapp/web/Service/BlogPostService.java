@@ -1,6 +1,9 @@
 package ch.supsi.webapp.web.Service;
 
-import ch.supsi.webapp.web.Model.*;
+import ch.supsi.webapp.web.Model.BlogPost;
+import ch.supsi.webapp.web.Model.Category;
+import ch.supsi.webapp.web.Model.Role;
+import ch.supsi.webapp.web.Model.User;
 import ch.supsi.webapp.web.Repository.BlogPostRepository;
 import ch.supsi.webapp.web.Repository.CategoryRepository;
 import ch.supsi.webapp.web.Repository.RoleRepository;
@@ -9,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,19 +32,7 @@ public class BlogPostService {
 
     private BCryptPasswordEncoder cryptPasswordEncoder;
 
-    //per averlo permanente dovrei fare un repository ma non mi bastava il tempo
-    private ArrayList<Integer> deletedPosts = new ArrayList<>();
-
-    public ArrayList<Integer> getDeletedPosts() {
-        return deletedPosts;
-    }
-
-    public void setDeletedPosts(ArrayList<Integer> deletedPosts) {
-        this.deletedPosts = deletedPosts;
-    }
-
     @PostConstruct
-
     public void postContructor() {
         if (roleRepository.findAll().size() == 0) {
             roleRepository.save(new Role("ROLE_ADMIN"));
@@ -91,7 +81,6 @@ public class BlogPostService {
         for (BlogPost blogpost : blogPostRepository.findAll()) {
             if (blogpost.getId() == id) {
                 blogPostRepository.deleteById(id);
-                deletedPosts.add(id);
                 return true;
             }
         }

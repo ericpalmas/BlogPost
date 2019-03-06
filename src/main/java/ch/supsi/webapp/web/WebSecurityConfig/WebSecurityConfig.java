@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/blog/**").permitAll()
 				.antMatchers("/css/**").permitAll()
 				.antMatchers("/images/**").permitAll()
+				.antMatchers("/js/**").permitAll()
 				.antMatchers("/webjars/**").permitAll()
 				.antMatchers("/fonts/**").permitAll()
 				.antMatchers("/login", "/register").permitAll()
@@ -45,7 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout()
 				.logoutUrl("/logout")
 				.logoutSuccessUrl("/");
-
 		http.csrf().disable();
 	}
 	

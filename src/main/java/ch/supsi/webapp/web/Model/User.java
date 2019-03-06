@@ -21,16 +21,30 @@ public class User {
 
     private String password;
 
-    public User() { }
+    private String confirmedPassword;
 
-
-    public User(Role role, String username, String name, String surname,String password) {
+    public User(Role role, String username, String name, String surname, String password) {
         this.role = role;
         this.username = username;
         this.name = name;
         this.surname = surname;
         this.password = password;
+        this.confirmedPassword = password;
     }
+
+    public String getConfirmedPassword() {
+        return confirmedPassword;
+    }
+
+    public void setConfirmedPassword(String confirmedPassword) {
+        this.confirmedPassword = confirmedPassword;
+    }
+
+
+
+    public User() { }
+
+
 
     public int getId() {
         return id;

@@ -49,17 +49,7 @@
 .topnav .icon {
     display: none;
 }
-
 #homeLogo{
     height: 100px;
     width: 100px;
-}
-#wrapper {
-    display: flex;
-}
-#all {
-    flex: 0 0 65%;
-}
-#categories {
-    flex: 1;
 }

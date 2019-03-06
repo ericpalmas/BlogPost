@@ -34,13 +34,7 @@
             Posted on <a th:text="${post.date.toLocaleString()}"> Date</a>
             <hr>
             <p class="lead" th:text="${post.text}">Description</p>
-            <article th:each="comment : ${post.comments}">
-                <div class="commentAuthor" th:text="${comment.getAuthor().name}"></div>
-                <div class="commentDate" th:text="${comment.date}">Date</div>
-                <div class="commentDescription" th:text="${comment.getDescription()}"></div>
-            </article>
             <hr>
-                <a  sec:authorize="isAuthenticated()" th:href="@{'/blog/'+${post.id}+'/comments'}" class="btn btn-primary btn-lg" role="button">add comment</a>
                 <a  th:if="${#authentication.name.equals(post.author.username) && #authorization.expression('hasRole(''ROLE_ADMIN'')')} " th:href="@{'/blog/'+${post.id}+'/edit'}" class="btn btn-primary btn-lg" role="button">Modify</a>
                 <a  th:if="${#authentication.name.equals(post.author.username) && #authorization.expression('hasRole(''ROLE_ADMIN'')')} " th:href="@{'/blog/'+${post.id}+'/delete'}" class="btn btn-primary btn-lg" role="button" >Delete</a>
         </div>

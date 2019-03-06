@@ -1,6 +1,5 @@
 package ch.supsi.webapp.web.BlogPostControllerThymeleaf;
 import ch.supsi.webapp.web.Model.BlogPost;
-import ch.supsi.webapp.web.Model.Commento;
 import ch.supsi.webapp.web.Model.User;
 import ch.supsi.webapp.web.Service.BlogPostService;
 import ch.supsi.webapp.web.Service.CustomUserDetailService;
@@ -13,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 
 @Controller
@@ -67,11 +65,6 @@ public class BlogPostControllerThymeleaf {
 
     @GetMapping("/blog/{id}")
     public String blogpostDetails(Model model, @PathVariable int id) {
-        for(Integer deletedId : blogPostService.getDeletedPosts()){
-            if(deletedId==id){
-                return "errorPage";
-            }
-        }
         if (blogPostService.getBlogPostById(id) != null)
             model.addAttribute("post", blogPostService.getBlogPostById(id));
        return "blogDetails";
@@ -93,30 +86,6 @@ public class BlogPostControllerThymeleaf {
         return "redirect:/";
     }
 
-
-    @GetMapping("/blog/{id}/comments")
-    public String writeComment(Model model, @PathVariable int id,@ModelAttribute Commento commento) {
-        model.addAttribute("blogpost", blogPostService.getBlogPostById(id));
-        model.addAttribute("commento",commento);
-        return "writeComment";
-    }
-
-    @PostMapping("/blog/{id}/comments")
-    public String addComment(@PathVariable int id,Commento commento,@ModelAttribute BlogPost blogPost) {
-
-
-        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        commento.setAuthor(blogPostService.getUserByUsername(user.getUsername()));
-
-
-        commento.setDate(new Date());
-        System.out.println(commento);
-        //blogPostService.getBlogPostById(id).setComment(commento);
-        System.out.println(blogPostService.getBlogPostById(id));
-        blogPost.setComment(commento);
-        blogPostService.modify(id,blogPostService.getBlogPostById(id));
-        return "redirect:/";
-    }
 
     @GetMapping("/blog/{id}/edit")
     public String put(Model model, @PathVariable int id) {
