@@ -29,12 +29,10 @@ password.onkeyup = function() {
 
 passwordConfirmed.onkeyup = function() {
     if(passwordConfirmed.value.length >= 8 && passwordConfirmed.value.length <= 15 && passwordConfirmed.value===password.value) {
-        // passwordConfirmed.style.borderColor = "green";
-        document.getElementById('nameDialog').style.borderColor = "green";
+        passwordConfirmed.style.borderColor = "green";
         flagConfirmedPassword = true;
     } else {
-        // passwordConfirmed.style.borderColor = "red";
-        document.getElementById('nameDialog').style.borderColor = "red";
+        passwordConfirmed.style.borderColor = "red";
         flagConfirmedPassword = false;
         if(document.getElementById('validationContainer').contains(button)!==null)
             document.getElementById('validationContainer').removeChild(button);
