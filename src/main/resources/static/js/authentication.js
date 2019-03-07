@@ -5,6 +5,7 @@ let surname = document.getElementById('surname');
 let username = document.getElementById('username');
 let flagPassword, flagName, flagSurname, flagUsername, flagConfirmedPassword;
 
+
 let button = document.createElement("INPUT");
 button.setAttribute("type", "submit");
 button.setAttribute("value", "Register");
