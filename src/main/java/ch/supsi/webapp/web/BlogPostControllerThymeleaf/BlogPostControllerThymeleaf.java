@@ -3,6 +3,8 @@ import ch.supsi.webapp.web.Model.BlogPost;
 import ch.supsi.webapp.web.Model.User;
 import ch.supsi.webapp.web.Service.BlogPostService;
 import ch.supsi.webapp.web.Service.CustomUserDetailService;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextImpl;
@@ -12,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -106,4 +110,12 @@ public class BlogPostControllerThymeleaf {
         blogPostService.delete(id);
         return "redirect:/";
     }
+
+    @ResponseBody
+    @GetMapping("/blog/search")
+    public List<BlogPost> search(@RequestParam(name = "q") String q) {
+       return blogPostService.getSearch(q);
+    }
+
+
 }

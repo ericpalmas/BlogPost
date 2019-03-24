@@ -16,25 +16,30 @@
         <a  th:href="@{'/'}" id="myImage"><img th:src="@{/images/blog.png}" width="30" height="30"  alt="" ></a>
         <a th:href="@{'/'}" >Home</a>
         <a th:href="@{'/blog/new'}">New BlogPost</a>
+        <form class="form-inline" id="searhForm">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="match">
+          <button class="btn btn-outline-info my-2 my-sm-0" id="submitSearch" type="submit" th:href="@{'blog/search'}">Search</button>
+        </form>
         <li class="rightli" style="float:right">
             <a class = "login" sec:authorize="!isAuthenticated()" th:href="@{'/login'}">Login</a>
             <a class = "logout" sec:authorize="isAuthenticated()" th:href="@{'/logout'}">Logout</a>
             <a class = "userLogged" th:if="${#authentication.name!='anonymousUser'}" th:text="${#authentication.name}" th:href="@{'/'}">Username</a>
         </li>
     </nav>
+
     <br><br>
 
-    <section class="container">
+    <section id="container" class="container">
         <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
                 <h1 class="display-4 font-italic">Notizie in evidenza</h1>
             </div>
         </div>
 
+
         <article class="row">
            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" data-aos="fade-right" th:each="post : ${posts}" >
               <div class="card text-center" >
-
 
                 <div th:if="${post.getCategory().getName()=='Sport'}">
                     <img class="card-img-top" name="Sport" th:src="@{/images/noah-silliman-246027-unsplash.jpg}" alt="" width="100%"/>
@@ -45,7 +50,6 @@
                 <div th:if="${post.getCategory().getName()=='Scienza'}">
                     <img class="card-img-top" name="Sport" th:src="@{/images/elevate-755051-unsplash.jpg}" alt="" width="100%"/>
                 </div>
-
 
                 <div class="card-block">
                     <h4 class="card-title" th:text="${#strings.abbreviate(post.title,20)}" >Post Title</h4>

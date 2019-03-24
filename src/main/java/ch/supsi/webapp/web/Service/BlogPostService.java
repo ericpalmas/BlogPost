@@ -131,6 +131,10 @@ public class BlogPostService {
     public User findUserById(int id) {
         return userRepository.findUserById(id);
     }
+
+    public List<BlogPost> getSearch(String q){
+        return blogPostRepository.findAllByTitleContainingOrTextContaining(q, q);
+    }
 }
 
 
