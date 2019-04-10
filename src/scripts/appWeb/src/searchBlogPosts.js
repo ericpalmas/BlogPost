@@ -1,4 +1,4 @@
-$(document).on("input", function () {
+document.getElementById("match").addEventListener("input", function () {
     let search = $('#match').val();
     if (search === null){
         return;
@@ -23,21 +23,18 @@ $(document).on("input", function () {
                         imageURL = "../images/elevate-755051-unsplash.jpg"
                     }
                     $('#container').append(
-                    '<article class="row">' +
                         '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" data-aos="fade-right" >' +
-                        '<div class="card text-center" >' +
+                        '<article class="card text-center" >' +
                         '<div>' +
                         '<img class="card-img-top" src=' + imageURL + ' alt="" width="100%"/>' +
                         '</div>' +
                         '<div class="card-block">' +
-                        '<h4 class="card-title" >' + element.title +'</h4>' +
-                    '<p class="card-text"  >' + element.text +'</p>' +
-                        '<a class="btn btn-default" href="../blog/'+ element.id +'">Read More</a>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                    '</article>');
-
+                        '<h4 class="card-title" >' + element.title + '</h4>' +
+                        '<p class="card-text"  >' + element.text + '</p>' +
+                        '<a class="btn btn-default" href="../blog/' + element.id + '">Read More</a>' +
+                        '</div>' +
+                        '</article>' +
+                        '</div>');
                 })
             });
     }
@@ -48,7 +45,7 @@ $(document).on("input", function () {
 
 
 
-$(document).on('click', '#submitSearch', function(e){
+document.getElementById("submitSearch").addEventListener('click',  function(e){
     e.preventDefault();
     let search = $('#match').val();
     if (search === null){
@@ -73,9 +70,8 @@ $(document).on('click', '#submitSearch', function(e){
                         imageURL = "../images/elevate-755051-unsplash.jpg"
                     }
                     $('#container').append(
-                        '<article class="row">' +
                         '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" data-aos="fade-right" >' +
-                        '<div class="card text-center" >' +
+                        '<article class="card text-center" >' +
                         '<div>' +
                         '<img class="card-img-top" src=' + imageURL + ' alt="" width="100%"/>' +
                         '</div>' +
@@ -84,9 +80,8 @@ $(document).on('click', '#submitSearch', function(e){
                         '<p class="card-text"  >' + element.text +'</p>' +
                         '<a class="btn btn-default" href="../blog/'+ element.id +'">Read More</a>' +
                         '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</article>');
+                        '</article>' +
+                        '</div>');
                 })
             });
 });

@@ -51,7 +51,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" id = "password" class="form-control" placeholder="password" th:field="*{password}">
+                            <input type="password" id = "password" class="form-control" placeholder="password (almeno 8 caratteri)" th:field="*{password}">
                         </div>
 
                         <div id="pswConfirmedDialog"class="input-group form-group">
@@ -83,6 +83,6 @@
         }
     </style>
 </main>
-<script type = "text/javascript" th:src="@{/js/authentication.js}"></script>
+<script type = "module" th:src="@{/js/authentication.js}"></script>
 </body>
 </html>
